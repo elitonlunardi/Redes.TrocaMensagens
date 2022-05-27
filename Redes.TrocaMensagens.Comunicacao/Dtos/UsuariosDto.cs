@@ -6,18 +6,19 @@ public class UsuariosDto
 
     public UsuariosDto(string retorno)
     {
-        var usuariosString = retorno.Split('\n');
-
-        var usuarios = usuariosString.Select(x =>
+        var usuariosString = retorno.Split(':');
+        var usuarios = new List<UsuarioDto>();
+        
+        for (int i = 0; i < usuariosString.Length / 3; i++)
         {
-            var dados = x.Split(':');
+            var dados = usuariosString.Skip(i).Take(3).ToArray();
 
-            return new UsuarioDto
+            usuarios.Add(new UsuarioDto
             {
                 UserId = dados[0],
-                Username = dados[1]
-            };
-        });
+                Username = dados[1],
+            });
+        }
 
         Usuarios = usuarios;
     }
