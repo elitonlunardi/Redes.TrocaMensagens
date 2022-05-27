@@ -16,4 +16,8 @@
       <Compile Remove="Dtos\UsuariosDto.cs" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Redes.TrocaMensagens.Comunicacao\Redes.TrocaMensagens.Comunicacao.csproj" />
+    </ItemGroup>
+
 </Project>

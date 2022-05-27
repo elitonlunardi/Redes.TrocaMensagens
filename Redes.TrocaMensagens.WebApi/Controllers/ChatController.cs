@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Redes.TrocaMensagens.WebApi.Dtos;
+using Redes.TrocaMensagens.Comunicacao.Dtos;
 
 namespace Redes.TrocaMensagens.WebApi.Controllers;
 
@@ -11,21 +11,21 @@ public class ChatController : ControllerBase
     [ProducesResponseType(typeof(UsuariosDto), 200)]
     public IActionResult GetTodosUsuarios()
     {
-        var listaDeUsuarios = new UsuariosDto();
-        listaDeUsuarios.Usuarios = new List<UsuarioDto>()
-        {
-            new UsuarioDto()
-            {
-                UserId = "10",
-                Username = "20"
-            },
-            new UsuarioDto()
-            {
-                UserId = "5",
-                Username = "34"
-            }
-        };
-        return Ok(listaDeUsuarios);
+        // var listaDeUsuarios = new UsuariosDto();
+        // listaDeUsuarios.Usuarios = new List<UsuarioDto>()
+        // {
+        //     new UsuarioDto()
+        //     {
+        //         UserId = "10",
+        //         Username = "20"
+        //     },
+        //     new UsuarioDto()
+        //     {
+        //         UserId = "5",
+        //         Username = "34"
+        //     }
+        // };
+        return Ok("lista fake");
     }
 
     [HttpPost("EnviarMensagem")]
