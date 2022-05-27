@@ -1,4 +1,4 @@
-﻿namespace Redes.TrocaMensagens.WebApi.Dtos;
+﻿namespace Redes.TrocaMensagens.Comunicacao.Dtos;
 
 public class EnvioMensagemDto
 {

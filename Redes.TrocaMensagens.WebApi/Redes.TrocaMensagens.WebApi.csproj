@@ -10,4 +10,10 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="Dtos\MensagensRecebidasDto.cs" />
+      <Compile Remove="Dtos\UsuarioDto.cs" />
+      <Compile Remove="Dtos\UsuariosDto.cs" />
+    </ItemGroup>
+
 </Project>

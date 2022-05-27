@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redes.TrocaMensagens.Consol
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redes.TrocaMensagens.WebApi", "Redes.TrocaMensagens.WebApi\Redes.TrocaMensagens.WebApi.csproj", "{725CB3A7-9019-4EDF-AA3A-66AB85B9270D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redes.TrocaMensagens.Comunicacao", "Redes.TrocaMensagens.Comunicacao\Redes.TrocaMensagens.Comunicacao.csproj", "{B1EC5A02-FB07-4781-B60F-C49C884C2673}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{977A3366-3B94-4ACA-83A0-E44EC687040C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{977A3366-3B94-4ACA-83A0-E44EC687040C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{977A3366-3B94-4ACA-83A0-E44EC687040C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1EC5A02-FB07-4781-B60F-C49C884C2673}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1EC5A02-FB07-4781-B60F-C49C884C2673}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1EC5A02-FB07-4781-B60F-C49C884C2673}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1EC5A02-FB07-4781-B60F-C49C884C2673}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
