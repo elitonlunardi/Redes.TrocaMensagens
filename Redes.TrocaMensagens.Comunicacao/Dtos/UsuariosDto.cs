@@ -11,7 +11,7 @@ public class UsuariosDto
         
         for (int i = 0; i < usuariosString.Length / 3; i++)
         {
-            var dados = usuariosString.Skip(i).Take(3).ToArray();
+            var dados = usuariosString.Skip(i * 3).Take(3).ToArray();
 
             usuarios.Add(new UsuarioDto
             {
