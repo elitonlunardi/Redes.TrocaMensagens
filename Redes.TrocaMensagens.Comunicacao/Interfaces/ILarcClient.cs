@@ -6,5 +6,5 @@ public interface ILarcClient
 {
     UsuariosDto ObterUsuarios();
     MensagensRecebidasDto ObterMensagens(string userId);
-    void EnviarMensagem(EnvioMensagemDto mensagem);
+    bool EnviarMensagem(EnvioMensagemDto mensagemDto);
 }

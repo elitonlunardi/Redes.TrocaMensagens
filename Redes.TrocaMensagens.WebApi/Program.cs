@@ -1,7 +1,12 @@
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Redes.TrocaMensagens.Comunicacao;
+using Redes.TrocaMensagens.Comunicacao.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.TryAddTransient<ILarcClient, LarcClient>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

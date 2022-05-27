@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Redes.TrocaMensagens.Comunicacao.Dtos;
+using Redes.TrocaMensagens.Comunicacao.Interfaces;
 
 namespace Redes.TrocaMensagens.WebApi.Controllers;
 
@@ -7,6 +8,13 @@ namespace Redes.TrocaMensagens.WebApi.Controllers;
 [Route("[controller]")]
 public class ChatController : ControllerBase
 {
+    private readonly ILarcClient _larcClient;
+
+    public ChatController(ILarcClient larcClient)
+    {
+        _larcClient = larcClient;
+    }
+
     [HttpGet("GetTodosUsuarios")]
     [ProducesResponseType(typeof(UsuariosDto), 200)]
     public IActionResult GetTodosUsuarios()
@@ -32,7 +40,8 @@ public class ChatController : ControllerBase
     [ProducesResponseType(typeof(IActionResult), 200)]
     public IActionResult EnviarMensagem(EnvioMensagemDto envioMensagemDto)
     {
-        return Ok("ok");
+        var mensagemEnviadaComSucesso = _larcClient.EnviarMensagem(envioMensagemDto);
+        return Ok(mensagemEnviadaComSucesso);
     }
 
     [HttpGet("GetMensagemUserIdPadrao")]
