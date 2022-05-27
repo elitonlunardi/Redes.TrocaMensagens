@@ -19,19 +19,17 @@ var ipEndpointLocal = new IPEndPoint(ipAddressLocal, 5900);
 
 Task.Run(async () =>
 {
+    var socket = new Socket(ipEndpointLocal.AddressFamily, SocketType.Stream, protocolType: ProtocolType.Tcp);
     while (true)
     {
-        using (var socket = new Socket(ipEndpointLocal.AddressFamily, SocketType.Stream, protocolType: ProtocolType.Tcp))
-        {
-            socket.Connect(ipEndPointTcp);
-            socket.Send(Encoding.UTF8.GetBytes($"GET USERS {userIdPassWdAutenticacao}"));
+        // using ()
+        socket.Connect(ipEndPointTcp);
+        socket.Send(Encoding.UTF8.GetBytes($"GET USERS {userIdPassWdAutenticacao}"));
 
-            var receive = new byte[128];
-            var bytesEnviados = socket.Receive(receive);
-            var receiveString = Encoding.UTF8.GetString(receive);
-            Console.WriteLine(receiveString);
-        }
-
+        var receive = new byte[128];
+        var bytesEnviados = socket.Receive(receive);
+        var receiveString = Encoding.UTF8.GetString(receive);
+        Console.WriteLine(receiveString);
         await Task.Delay(TimeSpan.FromSeconds(6));
     }
 });
