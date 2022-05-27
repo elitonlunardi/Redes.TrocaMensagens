@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { ChatComponent } from './chat/chat.component';
 import {ListboxModule} from 'primeng/listbox';
 import { FormsModule } from '@angular/forms';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -15,11 +15,9 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
-    ListboxModule,
-  ],
-  exports: [
     ListboxModule,
   ],
   providers: [],
