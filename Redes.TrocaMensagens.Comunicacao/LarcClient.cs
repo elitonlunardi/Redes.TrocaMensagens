@@ -44,7 +44,7 @@ public class LarcClient : ILarcClient
         return new UsuariosDto(retorno);
     }
 
-    public MensagensRecebidasDto ObterMensagens(string userId)
+    public MensagemRecebidaDto ObterMensagemParaUsuarioPadrao()
     {
         var socket = new Socket(_endpointLocal.AddressFamily, SocketType.Stream, protocolType: ProtocolType.Tcp);
         
@@ -56,7 +56,7 @@ public class LarcClient : ILarcClient
         
         var retorno = Encoding.UTF8.GetString(receive);
 
-        return new MensagensRecebidasDto(retorno, userId);
+        return new MensagemRecebidaDto(retorno);
     }
 
     public bool EnviarMensagem(EnvioMensagemDto mensagemDto)

@@ -19,21 +19,8 @@ public class ChatController : ControllerBase
     [ProducesResponseType(typeof(UsuariosDto), 200)]
     public IActionResult GetTodosUsuarios()
     {
-        // var listaDeUsuarios = new UsuariosDto();
-        // listaDeUsuarios.Usuarios = new List<UsuarioDto>()
-        // {
-        //     new UsuarioDto()
-        //     {
-        //         UserId = "10",
-        //         Username = "20"
-        //     },
-        //     new UsuarioDto()
-        //     {
-        //         UserId = "5",
-        //         Username = "34"
-        //     }
-        // };
-        return Ok("lista fake");
+        var usuarios = _larcClient.ObterUsuarios();
+        return Ok(usuarios);
     }
 
     [HttpPost("EnviarMensagem")]
@@ -48,10 +35,7 @@ public class ChatController : ControllerBase
     [ProducesResponseType(typeof(MensagemRecebidaDto), 200)]
     public IActionResult GetMensagemUserIdPadrao()
     {
-        return Ok(new MensagemRecebidaDto
-        {
-            UserId = "12345",
-            Mensagem = "mensagem fake"
-        });
+        var mensagem = _larcClient.ObterMensagemParaUsuarioPadrao();
+        return Ok(mensagem);
     }
 }

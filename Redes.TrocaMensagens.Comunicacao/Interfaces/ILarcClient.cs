@@ -5,6 +5,6 @@ namespace Redes.TrocaMensagens.Comunicacao.Interfaces;
 public interface ILarcClient
 {
     UsuariosDto ObterUsuarios();
-    MensagensRecebidasDto ObterMensagens(string userId);
+    MensagemRecebidaDto ObterMensagemParaUsuarioPadrao();
     bool EnviarMensagem(EnvioMensagemDto mensagemDto);
 }
