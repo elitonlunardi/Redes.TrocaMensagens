@@ -8,12 +8,12 @@ namespace Redes.TrocaMensagens.Comunicacao;
 
 public class LarcClient : ILarcClient
 {
-    private static string USUARIO_APLICACAO = "6806:epftj";
-    private static string USER_COMUNICACAO = "4038";
-    private static string TODOS_USUARIOS = "0";
+    private const string USUARIO_APLICACAO = "6806:epftj";
+    private const string USER_COMUNICACAO = "4038";
+    private const string TODOS_USUARIOS = "0";
     
     private readonly IPEndPoint _endpointLocal;
-    private readonly IPEndPoint _endpointLarc;
+    private readonly IPEndPoint _endpointLarcTcp;
     private readonly IPEndPoint _endPointLarcUdp;
     
     public LarcClient()
@@ -25,7 +25,7 @@ public class LarcClient : ILarcClient
         
         var ipAddressLocal = Dns.GetHostEntry(Dns.GetHostName()).AddressList[0].MapToIPv4();
         _endpointLocal = new IPEndPoint(ipAddressLocal, 5900);
-        _endpointLarc = new IPEndPoint(ipAdress, portaTcp);
+        _endpointLarcTcp = new IPEndPoint(ipAdress, portaTcp);
         _endPointLarcUdp = new IPEndPoint(ipAdress, portaUdp);
     }
     
@@ -33,11 +33,12 @@ public class LarcClient : ILarcClient
     {
         var socket = new Socket(_endpointLocal.AddressFamily, SocketType.Stream, protocolType: ProtocolType.Tcp);
         
-        socket.Connect(_endpointLarc);
+        socket.Connect(_endpointLarcTcp);
         socket.Send(Encoding.UTF8.GetBytes($"GET USERS {USUARIO_APLICACAO}"));
 
         var receive = new byte[128];
-        var bytesRecebidos = socket.Receive(receive);
+        socket.Receive(receive);
+        
         var retorno = Encoding.UTF8.GetString(receive);
 
         return new UsuariosDto(retorno);
@@ -45,7 +46,17 @@ public class LarcClient : ILarcClient
 
     public MensagensRecebidasDto ObterMensagens(string userId)
     {
-        throw new NotImplementedException();
+        var socket = new Socket(_endpointLocal.AddressFamily, SocketType.Stream, protocolType: ProtocolType.Tcp);
+        
+        socket.Connect(_endpointLarcTcp);
+        socket.Send(Encoding.UTF8.GetBytes($"GET MESSAGE {USUARIO_APLICACAO}"));
+
+        var receive = new byte[128];
+        socket.Receive(receive);
+        
+        var retorno = Encoding.UTF8.GetString(receive);
+
+        return new MensagensRecebidasDto(retorno, userId);
     }
 
     public bool EnviarMensagem(EnvioMensagemDto mensagemDto)

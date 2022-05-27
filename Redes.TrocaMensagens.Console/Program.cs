@@ -2,7 +2,6 @@
 using System.Net.Sockets;
 using System.Text;
 
-
 var userIdPassWdAutenticacao = "6806:epftj";
 var userIdComunicacao = "4038";
 var userIdTodosUsuarios = "0";
