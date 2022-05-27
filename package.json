@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@angular/cdk": "^13.3.8",
+    "font-awesome": "^4.7.0",
+    "primeicons": "^5.0.0",
+    "primeng": "^13.4.1"
+  }
+}
