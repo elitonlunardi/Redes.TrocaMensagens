@@ -9,6 +9,6 @@ public class MensagemRecebidaDto
     {
         var split = retorno.Split(':');
         UserId = split[0];
-        Mensagem = split[1];
+        Mensagem = new String(split[1].Where(x => x != (char)0).ToArray());
     }
 }
