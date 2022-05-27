@@ -1,8 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redes.TrocaMensagens.Console", "Redes.TrocaMensagens.Console\Redes.TrocaMensagens.Console.csproj", "{42022985-C6CC-4DB9-98D3-E093F6D508E4}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redes.TrocaMensagens.Console", "Redes.TrocaMensagens.Console\Redes.TrocaMensagens.Console.csproj", "{42022985-C6CC-4DB9-98D3-E093F6D508E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redes.TrocaMensagens.WebApi", "Redes.TrocaMensagens.WebApi\Redes.TrocaMensagens.WebApi.csproj", "{725CB3A7-9019-4EDF-AA3A-66AB85B9270D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redes.TrocaMensagens.WebApi", "Redes.TrocaMensagens.WebApi\Redes.TrocaMensagens.WebApi.csproj", "{725CB3A7-9019-4EDF-AA3A-66AB85B9270D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +21,15 @@ Global
 		{725CB3A7-9019-4EDF-AA3A-66AB85B9270D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{725CB3A7-9019-4EDF-AA3A-66AB85B9270D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{725CB3A7-9019-4EDF-AA3A-66AB85B9270D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{977A3366-3B94-4ACA-83A0-E44EC687040C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{977A3366-3B94-4ACA-83A0-E44EC687040C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{977A3366-3B94-4ACA-83A0-E44EC687040C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{977A3366-3B94-4ACA-83A0-E44EC687040C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {94893FBB-CFAE-416F-BD92-2E8DF5B5E8EC}
 	EndGlobalSection
 EndGlobal

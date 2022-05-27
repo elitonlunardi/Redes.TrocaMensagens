@@ -4,5 +4,4 @@ public class MensagemDto
 {
     public string UserIdDestinatario { get; set; }
     public string Mensagem { get; set; }
-    
 }
