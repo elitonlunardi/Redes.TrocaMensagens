@@ -1,8 +1,6 @@
 <div class="container">
-    <div class="col-4 pessoas-online">
-        <div class="row">
-            <p-listbox [options]="cities" [(ngModel)]="selectedCity" optionLabel="name"></p-listbox>
-        </div>
+    <div class="pessoas-online">
+        <p-listbox [options]="usuarioModel.usuarios" [(ngModel)]="ususariosSelecionados" optionLabel="username" optionValue="userId"></p-listbox>
     </div>
     <div class="col-8">
     </div>

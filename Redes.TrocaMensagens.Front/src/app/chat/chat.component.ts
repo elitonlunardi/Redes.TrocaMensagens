@@ -1,10 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-
-interface City {
-  name: string,
-  code: string
-}
-
+import { ToastrService } from 'ngx-toastr';
+import { UsuarioModel } from '../model/usuarios.model';
+import { ChatService } from '../services/chat.service';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -12,22 +9,26 @@ interface City {
   encapsulation: ViewEncapsulation.None
 })
 export class ChatComponent implements OnInit {
+  usuarioModel: UsuarioModel;
 
-  cities: City[];
+  ususariosSelecionados:UsuarioModel;
 
-  selectedCity: City | undefined;
-
-  constructor() { 
-    this.cities = [
-      {name: 'New York', code: 'NY'},
-      {name: 'Rome', code: 'RM'},
-      {name: 'London', code: 'LDN'},
-      {name: 'Istanbul', code: 'IST'},
-      {name: 'Paris', code: 'PRS'}
-  ];
+  constructor(private chatService: ChatService, private toastr: ToastrService) { 
   }
 
-  ngOnInit(): void {
-    
+  ngOnInit() {
+    this.preencheUsuariosOnline();
   }
+  
+ preencheUsuariosOnline() {
+  this.chatService.getTodosUsuarios().subscribe((_usuario: UsuarioModel) => {
+    if(_usuario === undefined){
+      console.log('retornou undefined por isso deu pau')
+    }
+      this.usuarioModel = _usuario;
+  }, error => {
+    this.toastr.error(`Erro ao tentar Usuario: ${error}`);
+  });
 }
+}
+
