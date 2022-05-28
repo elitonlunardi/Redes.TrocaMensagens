@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UsuarioModel } from '../model/usuarios.model';
+import { MensagemModel } from '../model/mensagem.model';
+import { EnviarMensagemModel } from '../model/enviarMensagem.model';
 
 
 @Injectable({
@@ -13,5 +15,11 @@ export class ChatService {
 
     getTodosUsuarios(): Observable<UsuarioModel> {
         return this.http.get<UsuarioModel>(`${this.baseUrl}GetTodosUsuarios`);
+    }
+    getMensagemUserIdPadrao(): Observable<MensagemModel>{
+        return this.http.get<MensagemModel>(`${this.baseUrl}GetMensagemUserIdPadrao`);
+    }
+    enviarMensagem(model: EnviarMensagemModel): Observable<any>{
+        return this.http.post(`${this.baseUrl}EnviarMensagem`, model);
     }
 }

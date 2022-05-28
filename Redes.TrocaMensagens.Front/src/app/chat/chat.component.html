@@ -1,13 +1,27 @@
-<table>
-        <th class="col-4 pessoas-online">
-            <tr>
-                <p-listbox [options]="usuarioModel.usuarios" (onClick)="abrirChat($event)" [(ngModel)]="ususariosSelecionados" optionLabel="username"
-                    optionValue="userId"></p-listbox>
-            </tr>
-        </th>
-       <th class="col-6">
-        <tr>
-            
-        </tr>
-       </th>
-</table>
+<nb-layout>
+    <nb-layout-column>
+        <nb-card size="medium">
+            <nb-card-header>
+                Usuários Online
+            </nb-card-header>
+            <nb-list>
+                <nb-list-item *ngFor="let user of usuarioModel.usuarios">
+                    <nb-user [name]="user.username" [title]="user.userId" (click)="abrirChat(user)">
+                    </nb-user>
+                </nb-list-item>
+            </nb-list>
+        </nb-card>
+    </nb-layout-column>
+
+    <nb-layout-column>
+        <div *ngIf="abrirMessenger">
+            <nb-chat title="Chat">
+                <nb-chat-message  [message]="mensagemModel.mensagem" [sender]="mensagemModel.userId" >
+                </nb-chat-message>
+                <nb-chat-form (send)="enviarMensagem($event)">
+                </nb-chat-form>
+            </nb-chat>
+        </div>
+    </nb-layout-column>
+
+</nb-layout>

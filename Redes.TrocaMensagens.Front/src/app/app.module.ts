@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { NbThemeModule, NbLayoutModule, NbCardModule, NbListModule, NbUserModule, NbToastrModule, NbChatModule } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,14 @@ import { ToastrModule } from 'ngx-toastr';
     AppRoutingModule,
     ListboxModule,
     HttpClientModule,
-    ToastrModule.forRoot(),
+    NbToastrModule.forRoot(),
+    NbThemeModule.forRoot({ name: 'dark' }),
+    NbLayoutModule,
+    NbEvaIconsModule,
+    NbListModule,
+    NbCardModule,
+    NbUserModule,
+    NbChatModule
   ],
   providers: [],
   bootstrap: [AppComponent]
