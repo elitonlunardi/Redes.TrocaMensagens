@@ -1,7 +1,13 @@
-<div class="container">
-    <div class="pessoas-online">
-        <p-listbox [options]="usuarioModel.usuarios" [(ngModel)]="ususariosSelecionados" optionLabel="username" optionValue="userId"></p-listbox>
-    </div>
-    <div class="col-8">
-    </div>
-</div>
+<table>
+        <th class="col-4 pessoas-online">
+            <tr>
+                <p-listbox [options]="usuarioModel.usuarios" (onClick)="abrirChat($event)" [(ngModel)]="ususariosSelecionados" optionLabel="username"
+                    optionValue="userId"></p-listbox>
+            </tr>
+        </th>
+       <th class="col-6">
+        <tr>
+            
+        </tr>
+       </th>
+</table>
