@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Net.Sockets;
+using Microsoft.AspNetCore.Mvc;
 using Redes.TrocaMensagens.Comunicacao.Dtos;
 using Redes.TrocaMensagens.Comunicacao.Interfaces;
 
@@ -19,23 +20,45 @@ public class ChatController : ControllerBase
     [ProducesResponseType(typeof(UsuariosDto), 200)]
     public IActionResult GetTodosUsuarios()
     {
-        var usuarios = _larcClient.ObterUsuarios();
-        return Ok(usuarios);
+        try
+        {
+            var usuarios = _larcClient.ObterUsuarios();
+            return Ok(usuarios);
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, "Falha ao estalecer conexão com o servidor.");
+        }
     }
 
     [HttpPost("EnviarMensagem")]
     [ProducesResponseType(typeof(IActionResult), 200)]
     public IActionResult EnviarMensagem(EnvioMensagemDto envioMensagemDto)
     {
-        var mensagemEnviadaComSucesso = _larcClient.EnviarMensagem(envioMensagemDto);
-        return Ok(mensagemEnviadaComSucesso);
+        try
+        {
+            var mensagemEnviadaComSucesso = _larcClient.EnviarMensagem(envioMensagemDto);
+            return Ok(mensagemEnviadaComSucesso);
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, "Falha ao estalecer conexão com o servidor.");
+        }
     }
 
     [HttpGet("GetMensagemUserIdPadrao")]
     [ProducesResponseType(typeof(MensagemRecebidaDto), 200)]
     public IActionResult GetMensagemUserIdPadrao()
     {
-        var mensagem = _larcClient.ObterMensagemParaUsuarioPadrao();
-        return Ok(mensagem);
+        try
+        {
+            var mensagem = _larcClient.ObterMensagemParaUsuarioPadrao();
+            return Ok(mensagem);
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, "Falha ao estalecer conexão com o servidor.");
+        }
+        
     }
 }
