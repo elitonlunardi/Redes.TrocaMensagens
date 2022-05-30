@@ -36,7 +36,7 @@ public class LarcClient : ILarcClient
             socket.Connect(_endpointLarcTcp);
             socket.Send(Encoding.UTF8.GetBytes($"GET USERS {USUARIO_APLICACAO}"));
 
-            var receive = new byte[128];
+            var receive = new byte[1024];
             socket.Receive(receive);
 
             var retorno = Encoding.UTF8.GetString(receive);
@@ -52,7 +52,7 @@ public class LarcClient : ILarcClient
             socket.Connect(_endpointLarcTcp);
             socket.Send(Encoding.UTF8.GetBytes($"GET MESSAGE {USUARIO_APLICACAO}"));
 
-            var receive = new byte[128];
+            var receive = new byte[1024];
             socket.Receive(receive);
 
             var retorno = Encoding.UTF8.GetString(receive);
