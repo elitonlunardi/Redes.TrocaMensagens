@@ -59,6 +59,19 @@ public class ChatController : ControllerBase
         {
             return StatusCode(500, "Falha ao estalecer conexão com o servidor.");
         }
-        
+    }
+
+    [HttpGet("ObterUsuarioAplicacaoPadrao")]
+    public IActionResult ObterUsuarioAplicacaoPadrao()
+    {
+        try
+        {
+            var usuarioAplicacaoPadrao = _larcClient.ObterUsuarioAplicacaoPadrao();
+            return Ok(usuarioAplicacaoPadrao);
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, "Falha ao estalecer conexão com o servidor.");
+        }
     }
 }
