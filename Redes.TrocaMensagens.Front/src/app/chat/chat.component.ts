@@ -13,19 +13,27 @@ import { interval } from 'rxjs';
 })
 export class ChatComponent implements OnInit {
   usuarioModel: UsuarioModel;
-  mensagemModel: MensagemModel;
+  mensagem: MensagemModel[];
   abrirMessenger: boolean = false;
-  userId: any;
+  userId = undefined;
 
   constructor(private chatService: ChatService, private toastr: NbToastrService) {
   }
 
   ngOnInit() {
+    this.mensagem = [];
     this.usuarioModel = {
       usuarios: new Array()
     }
     interval(5000).subscribe(() => {
       this.preencheUsuariosOnline();
+      if (this.userId !== undefined) {
+        this.chatService.getMensagemUserIdPadrao().subscribe((mensagem: MensagemModel) => {
+          if (mensagem.mensagem !== '') {
+            this.mensagem.push(mensagem);
+          }
+        });
+      }
     });
 
   };
@@ -36,16 +44,19 @@ export class ChatComponent implements OnInit {
     }
     this.chatService.enviarMensagem(model).subscribe(() => {
       this.toastr.success('Mensagem enviada com sucesso');
+      this.chatService.getMensagemUserIdPadrao().subscribe((mensagem: MensagemModel) => {
+        this.mensagem.push(mensagem);
+      });
     }, error => {
       this.toastr.danger(`${error.error}`);
     });
   }
   abrirChat($event: any) {
+    this.mensagem = [];
     this.chatService.getMensagemUserIdPadrao().subscribe((mensagem: MensagemModel) => {
-      console.log(mensagem);
-      this.mensagemModel = mensagem;
       this.abrirMessenger = true;
-      this.userId = $event.userId;
+      this.userId = $event;
+      this.mensagem.push(mensagem);
     }, error => {
       this.toastr.danger(`${error.error}`);
     });

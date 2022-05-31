@@ -6,7 +6,7 @@
             </nb-card-header>
             <nb-list>
                 <nb-list-item *ngFor="let user of usuarioModel.usuarios">
-                    <nb-user [name]="user.username" [title]="user.userId" (click)="abrirChat(user)">
+                    <nb-user [name]="user.username" [title]="user.userId" (click)="abrirChat(user.userId)">
                     </nb-user>
                 </nb-list-item>
             </nb-list>
@@ -16,7 +16,7 @@
     <nb-layout-column>
         <div *ngIf="abrirMessenger">
             <nb-chat title="Chat">
-                <nb-chat-message  [message]="mensagemModel.mensagem" [sender]="mensagemModel.userId" >
+                <nb-chat-message *ngFor="let msg of mensagem" [message]="msg.mensagem" [sender]="msg.userId" >
                 </nb-chat-message>
                 <nb-chat-form (send)="enviarMensagem($event)">
                 </nb-chat-form>

@@ -8,7 +8,7 @@ namespace Redes.TrocaMensagens.Comunicacao;
 
 public class LarcClient : ILarcClient
 {
-    private const string USUARIO_APLICACAO = "6806:epftj";
+    private const string USUARIO_APLICACAO = "6408:jitfi";
     private const string USER_COMUNICACAO = "4038";
     private const string TODOS_USUARIOS = "0";
 
