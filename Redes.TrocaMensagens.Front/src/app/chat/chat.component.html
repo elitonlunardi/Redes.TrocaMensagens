@@ -15,9 +15,14 @@
 
     <nb-layout-column>
         <div *ngIf="abrirMessenger">
-            <nb-chat title="Chat">
-                <nb-chat-message *ngFor="let msg of mensagem" [message]="msg.mensagem" [sender]="msg.userId" >
-                </nb-chat-message>
+            <nb-chat title="Chat"  [scrollBottom]="true" size="large">
+                <nb-chat-message *ngFor="let msg of messages"
+                [message]="msg.text"
+                [reply]="msg.reply"
+                [sender]="msg.user.name"
+                [date]="msg.date"
+                [customMessageData]="msg.customMessageData">
+              </nb-chat-message>
                 <nb-chat-form (send)="enviarMensagem($event)">
                 </nb-chat-form>
             </nb-chat>

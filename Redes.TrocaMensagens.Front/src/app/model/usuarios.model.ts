@@ -2,7 +2,7 @@ export interface UsuarioModel{
     usuarios: UsuarioInfo[];
 }
 
-interface UsuarioInfo{
+export interface UsuarioInfo{
     userId: any;
     username: any;
 }
