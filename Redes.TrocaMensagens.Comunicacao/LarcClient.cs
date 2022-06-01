@@ -9,22 +9,23 @@ namespace Redes.TrocaMensagens.Comunicacao;
 public class LarcClient : ILarcClient
 {
     
-    //private const string _usuarioAplicacaoComSenha =  "6806:epftj";
-    private const string _usuarioAplicacaoComSenha =  "6408:jitfi";
+    private const string _usuarioAplicacaoPadraoComSenha =  "6806:epftj";
+    // private const string _usuarioAplicacaoPadraoComSenha =  "6408:jitfi";
     private const string TODOS_USUARIOS = "0";
 
     private readonly IPEndPoint _endpointLocal;
     private readonly IPEndPoint _endpointLarcTcp;
     private readonly IPEndPoint _endPointLarcUdp;
-    private readonly UsuarioDto _usuarioAplicacaoComUsername;
+    private readonly UsuarioDto _usuarioAplicacaoPadraoComUsername;
     
     public LarcClient()
     {
-        _usuarioAplicacaoComUsername = new UsuarioDto()
+        _usuarioAplicacaoPadraoComUsername = new UsuarioDto()
         {
-             UserId = "6408",
-             Username = "Rennã Murilo Tiedt"
+             UserId = "6806",
+             Username = "Éliton Lunardi"
         };
+        
         int portaUdp = 1011;
         int portaTcp = 1012;
         var ipHostLarcInf = Dns.GetHostEntry("larc.inf.furb.br");
@@ -38,7 +39,7 @@ public class LarcClient : ILarcClient
 
     public UsuarioDto ObterUsuarioAplicacaoPadrao()
     {
-        return _usuarioAplicacaoComUsername;
+        return _usuarioAplicacaoPadraoComUsername;
     }
 
     public UsuariosDto ObterUsuarios()
@@ -46,7 +47,7 @@ public class LarcClient : ILarcClient
         using (var socket = new Socket(_endpointLocal.AddressFamily, SocketType.Stream, protocolType: ProtocolType.Tcp))
         {
             socket.Connect(_endpointLarcTcp);
-            socket.Send(Encoding.UTF8.GetBytes($"GET USERS {_usuarioAplicacaoComSenha}"));
+            socket.Send(Encoding.UTF8.GetBytes($"GET USERS {_usuarioAplicacaoPadraoComSenha}"));
 
             var receive = new byte[1024];
             socket.Receive(receive);
@@ -62,7 +63,7 @@ public class LarcClient : ILarcClient
         using (var socket = new Socket(_endpointLocal.AddressFamily, SocketType.Stream, protocolType: ProtocolType.Tcp))
         {
             socket.Connect(_endpointLarcTcp);
-            socket.Send(Encoding.UTF8.GetBytes($"GET MESSAGE {_usuarioAplicacaoComSenha}"));
+            socket.Send(Encoding.UTF8.GetBytes($"GET MESSAGE {_usuarioAplicacaoPadraoComSenha}"));
 
             var receive = new byte[1024];
             socket.Receive(receive);
@@ -78,7 +79,7 @@ public class LarcClient : ILarcClient
         using (var socket = new Socket(_endpointLocal.AddressFamily, SocketType.Dgram, protocolType: ProtocolType.Udp))
         {
             socket.Connect(_endPointLarcUdp);
-            var payload = Encoding.UTF8.GetBytes($"SEND MESSAGE {_usuarioAplicacaoComSenha}:{mensagemDto.UserIdDestinatario}:{mensagemDto.Mensagem}");
+            var payload = Encoding.UTF8.GetBytes($"SEND MESSAGE {_usuarioAplicacaoPadraoComSenha}:{mensagemDto.UserIdDestinatario}:{mensagemDto.Mensagem}");
             var bytesEnviados = socket.Send(payload);
             return bytesEnviados > 0;
         }
