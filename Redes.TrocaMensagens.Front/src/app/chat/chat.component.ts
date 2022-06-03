@@ -15,7 +15,6 @@ export class ChatComponent implements OnInit {
   usuarioModel: UsuarioModel;
   usuarioLogado: UsuarioInfo;
   messages: any[] = [];
-  abrirMessenger: boolean = false;
   userId = undefined;
   username = undefined;
 
@@ -29,13 +28,11 @@ export class ChatComponent implements OnInit {
     interval(5000).subscribe(() => {
       this.obterUsuarioLogado();
       this.preencheUsuariosOnline();
-      if (this.userId !== undefined) {
         this.chatService.getMensagemUserIdPadrao().subscribe((mensagem: MensagemModel) => {
           if (mensagem.mensagem !== '') {
-            this.preencheMessage(mensagem.mensagem, false, this.username);
+            this.preencheMessage(mensagem.mensagem, false, mensagem.userId);
           }
         });
-      }
     });
 
   };
@@ -55,10 +52,8 @@ export class ChatComponent implements OnInit {
     });
   }
   abrirChat($event: any) {
-    this.abrirMessenger = false;
     this.messages = [];
     this.chatService.getMensagemUserIdPadrao().subscribe((mensagem: MensagemModel) => {
-      this.abrirMessenger = true;
       this.userId = $event;
     }, error => {
       this.toastr.danger(`${error.error}`);
@@ -75,7 +70,9 @@ export class ChatComponent implements OnInit {
 
   obterUsuarioLogado() {
     this.chatService.obterUsuarioLogado().subscribe((_usuario: UsuarioInfo) => {
+      let image: string = 'https://i.gifer.com/no.gif';
       this.usuarioLogado = _usuario;
+      this.usuarioLogado.picture = image;
     })
   }
 

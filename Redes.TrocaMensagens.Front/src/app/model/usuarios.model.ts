@@ -5,4 +5,5 @@ export interface UsuarioModel{
 export interface UsuarioInfo{
     userId: any;
     username: any;
+    picture: any;
 }
