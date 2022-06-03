@@ -32,7 +32,7 @@ export class ChatComponent implements OnInit {
       if (this.userId !== undefined) {
         this.chatService.getMensagemUserIdPadrao().subscribe((mensagem: MensagemModel) => {
           if (mensagem.mensagem !== '') {
-            this.preencheMessage(mensagem.mensagem,false,this.username);
+            this.preencheMessage(mensagem.mensagem, false, this.username);
           }
         });
       }
@@ -48,7 +48,7 @@ export class ChatComponent implements OnInit {
     this.chatService.enviarMensagem(model).subscribe(() => {
       this.toastr.success('Mensagem enviada com sucesso');
       this.chatService.getMensagemUserIdPadrao().subscribe((mensagem: MensagemModel) => {
-        this.preencheMessage(model.mensagem,true,this.usuarioLogado.username);
+        this.preencheMessage(model.mensagem, true, this.usuarioLogado.username);
       });
     }, error => {
       this.toastr.danger(`${error.error}`);
@@ -66,19 +66,20 @@ export class ChatComponent implements OnInit {
   }
   preencheUsuariosOnline() {
     this.chatService.getTodosUsuarios().subscribe((_usuario: UsuarioModel) => {
+      _usuario.usuarios = _usuario.usuarios.filter(x => x.userId !== this.usuarioLogado.userId);
       this.usuarioModel = _usuario;
     }, error => {
       this.toastr.danger(`${error.error}`);
     });
   }
 
-  obterUsuarioLogado(){
+  obterUsuarioLogado() {
     this.chatService.obterUsuarioLogado().subscribe((_usuario: UsuarioInfo) => {
       this.usuarioLogado = _usuario;
     })
   }
 
-  preencheMessage(mensagem: any,reply: boolean, nomeUsuario: any){
+  preencheMessage(mensagem: any, reply: boolean, nomeUsuario: any) {
     let message = {
       text: mensagem,
       customMessageData: [],

@@ -9,8 +9,8 @@ namespace Redes.TrocaMensagens.Comunicacao;
 public class LarcClient : ILarcClient
 {
     
-    private const string _usuarioAplicacaoPadraoComSenha =  "6806:epftj";
-    // private const string _usuarioAplicacaoPadraoComSenha =  "6408:jitfi";
+    //private const string _usuarioAplicacaoPadraoComSenha =  "6806:epftj";
+    private const string _usuarioAplicacaoPadraoComSenha =  "6408:jitfi";
     private const string TODOS_USUARIOS = "0";
 
     private readonly IPEndPoint _endpointLocal;
@@ -22,8 +22,8 @@ public class LarcClient : ILarcClient
     {
         _usuarioAplicacaoPadraoComUsername = new UsuarioDto()
         {
-             UserId = "6806",
-             Username = "Éliton Lunardi"
+             UserId = "6408",
+             Username = "Rennã Murilo Tiedt"
         };
         
         int portaUdp = 1011;
